@@ -21,17 +21,18 @@
 		<center>
 			<div id="addBox">
 				<div class="heading">
-					<b><div Style="padding: 9px;">Add Branch</div></b>
+					<b><div Style="padding: 9px;" >Add Course</div></b>
 				</div>
 				<br>
+				<s:actionmessage />
 				<s:actionerror />
-				<!--  Add Branch form -->
-				<s:form action="addBranch">
-					<s:textfield name="branchVO.branchName"
-						label="Branch Name" maxlength="45" />
-					<s:textfield name="branchVO.duration"
+				<!--  Add Course form -->
+				<s:form action="addCourse">
+					<s:textfield name="courseVO.courseName"
+						label="Course Name" maxlength="45" />
+					<s:textfield name="courseVO.duration"
 						label="Duration (no. of year)" maxlength="1" />
-					<s:textfield name="branchVO.numberOfSemester"
+					<s:textfield name="courseVO.numberOfSemester"
 						label="Number Of Semester" maxlength="2" />
 					<s:submit name="submit" value="submit" />
 				</s:form>

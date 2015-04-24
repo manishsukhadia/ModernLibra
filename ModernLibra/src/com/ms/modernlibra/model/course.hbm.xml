@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.ms.modernlibra.model">
-	<class name="BranchVO" table="BRANCH">
+	<class name="CourseVO" table="COURSE">
 		<meta attribute="class-description">
-			This class contains branch's detail.
+			This class contains course's detail.
 		</meta>
 
 		<id name="id" type="int" column="ID">
 			<generator class="increment" />
 		</id>
-		<property name="branchName" column="BRANCH_NAME" type="string" />
+		<property name="courseName" column="COURSE_NAME" type="string" />
 		<property name="duration" column="DURATION" type="string" />
 		<property name="numberOfSemester" column="NUMBER_OF_SEMESTER"
 			type="string" />

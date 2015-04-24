@@ -7,22 +7,22 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import com.ms.modernlibra.model.BranchVO;
+import com.ms.modernlibra.model.CourseVO;
 import com.ms.modernlibra.util.HibernateUtils;
 
-public class BranchDAO extends DataAccessObject {
+public class CourseDAO extends DataAccessObject {
 
-	public BranchDAO() {
-		super(BranchVO.class);
+	public CourseDAO() {
+		super(CourseVO.class);
 	}
 
-	public BranchVO searchByBranchName(BranchVO branchVO) {
-		BranchVO savedVO  = null;
+	public CourseVO searchByBranchName(CourseVO courseVO) {
+		CourseVO savedVO  = null;
 		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
-		Criteria criteria = session.createCriteria(BranchVO.class);
-		Criterion criterion = Restrictions.ilike("branchName", branchVO.getBranchName());
+		Criteria criteria = session.createCriteria(CourseVO.class);
+		Criterion criterion = Restrictions.ilike("courseName", courseVO.getCourseName());
 	    criteria.add(criterion);
-	    List<BranchVO> branchVOList = criteria.list();
+	    List<CourseVO> branchVOList = criteria.list();
 	    if(!branchVOList.isEmpty()){
 	    	savedVO = branchVOList.get(0);
 	    }

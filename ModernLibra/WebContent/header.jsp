@@ -24,13 +24,13 @@
 				</div>
 			</li>
 			<li>
-				<a href="#" class="parent"><span>Branch</span></a>
+				<a href="#" class="parent"><span>Course</span></a>
 				<div>
 					<ul>
-						<li><a href="addBranch" class="parent"><span> Add Branch
+						<li><a href="addCourse" class="parent"><span> Add Course
 									</span></a>
-						<li><a href="searchBranch" class="parent"><span>Search
-									Branch</span></a>
+						<li><a href="searchCourse" class="parent"><span>Search
+									Course</span></a>
 					</ul>
 				</div>
 			</li>

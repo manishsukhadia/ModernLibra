@@ -17,12 +17,12 @@
 			
 		</action>
 		
-		<action name="addBranch"
-			class="com.ms.modernlibra.web.action.AddBranchAction" method="execute">
-			<result name="success">/dashboard.jsp</result>
-			<result name="error">/add_branch.jsp</result>
-			<result name="input">/add_branch.jsp</result>
-			<result name="addBranch">/add_branch.jsp</result>
+		<action name="addCourse"
+			class="com.ms.modernlibra.web.action.AddCourseAction" method="execute">
+			<result name="success">/add_course.jsp</result>
+			<result name="error">/add_course.jsp</result>
+			<result name="input">/add_course.jsp</result>
+			<result name="addCourse">/add_course.jsp</result>
 		</action>
 
 	</package>

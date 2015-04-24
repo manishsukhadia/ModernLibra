@@ -27,7 +27,7 @@
 		<property name="hibernate.c3p0.timeout">180</property>
 		
 		<!-- Mapping files -->
-		<mapping resource="com/ms/modernlibra/model/branch.hbm.xml" />
+		<mapping resource="com/ms/modernlibra/model/course.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>

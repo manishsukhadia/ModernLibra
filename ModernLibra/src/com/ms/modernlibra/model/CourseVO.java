@@ -1,18 +1,18 @@
 package com.ms.modernlibra.model;
 
-public class BranchVO extends ValueObject {
-	private String branchName;
+public class CourseVO extends ValueObject {
+	private String courseName;
 	private String duration;
 	private String numberOfSemester;
 	
-	public String getBranchName() {
-		return branchName;
+	public String getCourseName() {
+		return courseName;
 	}
-	
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
-	
+
 	public String getDuration() {
 		return duration;
 	}
