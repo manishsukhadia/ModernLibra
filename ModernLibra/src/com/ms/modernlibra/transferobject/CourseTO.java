@@ -1,44 +1,41 @@
-package com.ms.modernlibra.model;
+package com.ms.modernlibra.transferobject;
 
-import com.ms.modernlibra.transferobject.CourseTO;
+import java.io.Serializable;
 
-public class CourseVO extends ValueObject {
+import com.ms.modernlibra.model.CourseVO;
+
+public class CourseTO extends TransferObject implements Serializable {
 	private String courseName;
 	private String duration;
 	private String numberOfSemester;
-
+	
 	public String getCourseName() {
 		return courseName;
 	}
-
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
-
 	public String getDuration() {
 		return duration;
 	}
-
 	public void setDuration(String duration) {
 		this.duration = duration;
 	}
-
 	public String getNumberOfSemester() {
 		return numberOfSemester;
 	}
-
 	public void setNumberOfSemester(String numberOfSemester) {
 		this.numberOfSemester = numberOfSemester;
 	}
+	
+	public static CourseTO adapt(CourseVO courseVO) {
+		CourseTO courseTO = new CourseTO();
 
-	public static CourseVO adapt(CourseTO courseTO) {
-		CourseVO courseVO = new CourseVO();
+		courseTO.setCourseName(courseVO.getCourseName());
+		courseTO.setDuration(courseVO.getDuration());
+		courseTO.setNumberOfSemester(courseVO.getNumberOfSemester());
+		courseTO.setId(courseVO.getId());
 
-		courseVO.setCourseName(courseTO.getCourseName());
-		courseVO.setDuration(courseTO.getDuration());
-		courseVO.setNumberOfSemester(courseTO.getNumberOfSemester());
-		courseVO.setId(courseTO.getId());
-
-		return courseVO;
+		return courseTO;
 	}
 }

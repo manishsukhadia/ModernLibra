@@ -28,11 +28,11 @@
 				<s:actionerror />
 				<!--  Add Course form -->
 				<s:form action="addCourse">
-					<s:textfield name="courseVO.courseName"
+					<s:textfield name="courseTO.courseName"
 						label="Course Name" maxlength="45" />
-					<s:textfield name="courseVO.duration"
+					<s:textfield name="courseTO.duration"
 						label="Duration (no. of year)" maxlength="1" />
-					<s:textfield name="courseVO.numberOfSemester"
+					<s:textfield name="courseTO.numberOfSemester"
 						label="Number Of Semester" maxlength="2" />
 					<s:submit name="submit" value="submit" />
 				</s:form>
