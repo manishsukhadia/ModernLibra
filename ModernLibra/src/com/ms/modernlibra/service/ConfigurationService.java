@@ -1,5 +1,8 @@
 package com.ms.modernlibra.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -27,5 +30,20 @@ public class ConfigurationService {
 		} catch(HibernateException he) {
 			throw new SystemException(ExceptionCategory.SYSTEM);
 		}
+	}
+
+	public List<CourseTO> searchCourse() throws SystemException {
+		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		ConfigurationFacade configurationFacade = new ConfigurationFacade();
+		List<CourseTO> courseList = new ArrayList<CourseTO>();
+		try {
+			courseList = configurationFacade.searchCourse();
+			transaction.commit();
+		} catch (HibernateException he) {
+			transaction.rollback();
+			throw new SystemException(ExceptionCategory.SYSTEM);
+		}
+		return courseList;
 	}
 }

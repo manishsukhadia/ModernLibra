@@ -15,7 +15,14 @@ public class CourseDAO extends DataAccessObject {
 	public CourseDAO() {
 		super(CourseVO.class);
 	}
-
+	
+	public List<CourseVO> searchCourse() {
+		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
+		Criteria criteria = session.createCriteria(CourseVO.class);
+		List<CourseVO> courseList = criteria.list();
+		return courseList;
+	}
+	
 	public CourseVO searchByBranchName(CourseVO courseVO) {
 		CourseVO savedVO  = null;
 		Session session = HibernateUtils.getFactoryObject().getCurrentSession();

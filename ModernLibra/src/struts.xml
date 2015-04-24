@@ -25,5 +25,10 @@
 			<result name="addCourse">/add_course.jsp</result>
 		</action>
 
+		<action name="searchCourse"
+			class="com.ms.modernlibra.web.action.SearchCourseAction" method="execute">
+			<result name="success">/search_course.jsp</result>
+			<result name="error">/search_course.jsp</result>
+		</action>
 	</package>
 </struts>
