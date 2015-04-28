@@ -2,33 +2,45 @@
 <!DOCTYPE struts PUBLIC
    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
    "http://struts.apache.org/dtds/struts-2.0.dtd">
-   
+
 <struts>
-<constant name="struts.devMode" value="true" />	
+	<constant name="struts.devMode" value="true" />
 
 	<package name="default" extends="struts-default">
-		
-		<action name="addStudent"
-			class="com.ms.modernlibra.web.action.AddStudentAction" method="execute">
+
+		<action name="addStudent" class="com.ms.modernlibra.web.action.AddStudentAction"
+			method="execute">
 			<result name="success">/dashboard.jsp</result>
 			<result name="error">/add_student.jsp</result>
 			<result name="input">/add_student.jsp</result>
 			<result name="addStudent">/add_student.jsp</result>
-			
+
 		</action>
-		
-		<action name="addCourse"
-			class="com.ms.modernlibra.web.action.AddCourseAction" method="execute">
+
+		<action name="addCourse" class="com.ms.modernlibra.web.action.AddCourseAction"
+			method="execute">
 			<result name="success">/add_course.jsp</result>
 			<result name="error">/add_course.jsp</result>
 			<result name="input">/add_course.jsp</result>
 			<result name="addCourse">/add_course.jsp</result>
 		</action>
 
-		<action name="searchCourse"
-			class="com.ms.modernlibra.web.action.SearchCourseAction" method="execute">
+		<action name="searchCourse" class="com.ms.modernlibra.web.action.SearchCourseAction"
+			method="execute">
 			<result name="success">/search_course.jsp</result>
 			<result name="error">/search_course.jsp</result>
 		</action>
+
+		<action name="updateCourse" class="com.ms.modernlibra.web.action.UpdateCourseAction"
+			method="execute">
+			<result name="success" type="redirectAction">
+				<param name="id">${id}</param>
+				<param name="actionName">searchCourse</param>
+			</result>
+			<result name="input">/update_course.jsp</result>
+			<result name="updateCourse">/update_course.jsp</result>
+			<result name="error">/update_course.jsp</result>
+		</action>
+
 	</package>
 </struts>

@@ -10,6 +10,7 @@ public class SearchCourseAction extends BaseActionSupport {
 
 	private CourseTO courseTO;
 	private List<CourseTO> courseList;
+	private int id;
 	
 	public CourseTO getCourseTO() {
 		return courseTO;
@@ -24,12 +25,23 @@ public class SearchCourseAction extends BaseActionSupport {
 		this.courseList = courseList;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String execute() {
 		String retVal = SUCCESS;
 		ConfigurationService configurationService = new ConfigurationService();
 
 		try {
 			courseList =  configurationService.searchCourse();
+			CourseTO courseTO = new CourseTO();
+			courseTO.setId(getId());
+			if(getId() != 0) {
+				addActionMessage("Successfully updated.");
+			}
 		} catch(SystemException se) {
 			addActionError(se.getExceptionCategory().getMessage());
 			retVal = ERROR;

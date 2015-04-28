@@ -21,13 +21,14 @@
 		<center>
 			<div id="addBox">
 				<div class="heading">
-					<b><div Style="padding: 9px;" >Add Course</div></b>
+					<b><div Style="padding: 9px;" >Update Course</div></b>
 				</div>
 				<br>
-			<b>	<s:actionmessage /> </b>
+		<b>		<s:actionmessage /> </b>
 				<s:actionerror /> 
-				<!--  Add Course form -->
-				<s:form action="addCourse">
+				<!--  update Course form -->
+				<s:form action="updateCourse">
+					<s:hidden name = "courseTO.id"/>
 					<s:textfield name="courseTO.courseName"
 						label="Course Name" maxlength="45" />
 					<s:textfield name="courseTO.duration"

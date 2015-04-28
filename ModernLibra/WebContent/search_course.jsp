@@ -16,18 +16,18 @@
 	</div>
 	<div id="container">
 		<center>
+			<s:hidden name = "courseTO.id"></s:hidden>
+		<b>	<s:actionmessage /> </b>
 			<div id="searchBox">
 				<div class=heading>
 					<b>
 					<div Style="padding: 7px;">
 						Courses List (<s:property value="courseList.size" />) 
 						<span style="margin: 317px;"></span>
-						 <a href="addCourse">add</a>
+						 <a href="addCourse">Add Course</a>
 					 </div>
-					</b>
 					</div>
 				</div>
-
 			<span style="padding: 1px;"></span>
 			<table class="" align="center" style="width: 70%; overflow: hidden;">
 				<tr>

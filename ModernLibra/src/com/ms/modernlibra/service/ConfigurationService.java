@@ -46,4 +46,38 @@ public class ConfigurationService {
 		}
 		return courseList;
 	}
+
+	public CourseTO findDepartmentById(CourseTO requestTO) throws SystemException {
+		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		ConfigurationFacade configurationFacade = new ConfigurationFacade();
+		CourseTO courseTO = new CourseTO();
+		try {
+			courseTO = configurationFacade.findDepartmentById(requestTO);
+			transaction.commit();
+		} catch (HibernateException he) {
+			transaction.rollback();
+			throw new SystemException(ExceptionCategory.SYSTEM);
+		}
+		return courseTO;
+	}
+
+	public void updateCourse(CourseTO courseTO) throws SystemException, BizException {
+		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		ConfigurationFacade configurationFacade = new ConfigurationFacade();
+		try {
+			configurationFacade.updatecourse(courseTO);
+			transaction.commit();
+		} catch (SystemException se) {
+			transaction.rollback();
+			throw se;
+		} catch (BizException be) {
+			transaction.rollback();
+			throw be;
+		} catch (HibernateException he) {
+			transaction.rollback();
+			throw new SystemException(ExceptionCategory.SYSTEM);
+		}
+	}
 }

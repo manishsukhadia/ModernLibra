@@ -3,14 +3,14 @@ package com.ms.modernlibra.web.action;
 import org.apache.commons.lang.StringUtils;
 
 import com.ms.modernlibra.BizException;
-import com.ms.modernlibra.ExceptionCategory;
 import com.ms.modernlibra.SystemException;
 import com.ms.modernlibra.service.ConfigurationService;
 import com.ms.modernlibra.transferobject.CourseTO;
 
-public class AddCourseAction extends BaseActionSupport {
+public class UpdateCourseAction extends BaseActionSupport {
 
 	private CourseTO courseTO;
+	private int id;
 
 	public CourseTO getCourseTO() {
 		return courseTO;
@@ -20,23 +20,40 @@ public class AddCourseAction extends BaseActionSupport {
 		this.courseTO = courseTO;
 	}
 
-	@Override
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String execute() {
-		String retVal = "addCourse";
-		if ((getSubmit() != null) && SUBMIT.equals(getSubmit())) {
-			ConfigurationService configurationService = new ConfigurationService();
+		String retVal = "updateCourse";
+		ConfigurationService configurationService = new ConfigurationService();
+
+		if (SUBMIT.equals(getSubmit())) {
 			try {
-				configurationService.addCourse(courseTO);
-				addActionMessage("Successfully Course ''"+courseTO.getCourseName()+"'' Added.");
-				courseTO = null;
+				configurationService.updateCourse(courseTO);
+				setId(courseTO.getId());
 				retVal = SUCCESS;
+			} catch (SystemException se) {
+				addActionError(se.getExceptionCategory().getMessage());
+				retVal = ERROR;
 			} catch (BizException be) {
 				addActionError(be.getExceptionCategory().getMessage());
 				retVal = ERROR;
+			}
+		} else {
+			CourseTO courseTO = new CourseTO();
+			courseTO.setId(getId());
+			try {
+				courseTO = configurationService.findDepartmentById(courseTO);
 			} catch (SystemException se) {
-				addActionError(ExceptionCategory.SYSTEM.getMessage());
+				addActionError(se.getExceptionCategory().getMessage());
 				retVal = ERROR;
 			}
+			setCourseTO(courseTO);
 		}
 		return retVal;
 	}
@@ -75,7 +92,6 @@ public class AddCourseAction extends BaseActionSupport {
 							"Number of Semester must be numeric");
 				}
 			}
-
 		}
 	}
 }

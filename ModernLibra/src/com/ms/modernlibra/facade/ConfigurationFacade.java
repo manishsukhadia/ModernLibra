@@ -18,7 +18,7 @@ public class ConfigurationFacade {
 		CourseDAO courseDAO = new CourseDAO();
 		CourseVO courseVO = CourseVO.adapt(courseTO);
 
-		if (courseDAO.searchByBranchName(courseVO) == null) {
+		if (courseDAO.searchByCourseName(courseVO) == null) {
 			courseDAO.save(courseVO);
 			courseTO = CourseTO.adapt(courseVO);
 		} else {
@@ -37,4 +37,37 @@ public class ConfigurationFacade {
 		return courseTOList;
 	}
 
+	public CourseTO findDepartmentById(CourseTO requestTO) {
+		CourseTO returnVal = null;
+		CourseDAO courseDAO = new CourseDAO();
+
+		CourseVO courseVO = CourseVO.adapt(requestTO);
+		courseVO = (CourseVO) courseDAO.findById(courseVO);
+
+		if (courseVO != null) {
+			returnVal = CourseTO.adapt(courseVO);
+		}
+		return returnVal;
+	}
+
+	public void updatecourse(CourseTO courseTO) throws SystemException,
+			BizException {
+		CourseDAO courseDAO = new CourseDAO();
+
+		CourseVO courseVO = CourseVO.adapt(courseTO);
+
+		CourseVO savedVO = courseDAO.searchByCourseName(courseVO);
+
+		if (savedVO == null) {
+			courseDAO.update(courseVO);
+		} else if (savedVO.getId() == courseVO.getId()) {
+			savedVO.setCourseName(courseVO.getCourseName());
+			savedVO.setDuration(courseVO.getDuration());
+			savedVO.setNumberOfSemester(courseVO.getNumberOfSemester());
+			courseDAO.update(savedVO);
+		} else {
+			throw new BizException(ExceptionCategory.COURSE_NAME_ALREADY_EXISTS);
+		}
+
+	}
 }
