@@ -10,7 +10,6 @@
 <script type="text/javascript" src="./js/jquery.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
 <title>Modern Libra</title>
 </head>
 <body>

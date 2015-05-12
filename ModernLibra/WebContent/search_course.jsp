@@ -18,6 +18,7 @@
 		<center>
 			<s:hidden name = "courseTO.id"></s:hidden>
 		<b>	<s:actionmessage /> </b>
+			<s:actionerror />
 			<div id="searchBox">
 				<div class=heading>
 					<b>

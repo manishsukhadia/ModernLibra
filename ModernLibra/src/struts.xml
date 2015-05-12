@@ -10,7 +10,7 @@
 
 		<action name="addStudent" class="com.ms.modernlibra.web.action.AddStudentAction"
 			method="execute">
-			<result name="success">/dashboard.jsp</result>
+			<result name="success">/add_student.jsp</result>
 			<result name="error">/add_student.jsp</result>
 			<result name="input">/add_student.jsp</result>
 			<result name="addStudent">/add_student.jsp</result>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.ms.modernlibra.model">
+	<class name="StudentVO" table="STUDENT">
+		<meta attribute="class-description">
+			This class contains student's detail.
+		</meta>
+
+		<id name="id" type="int" column="ID">
+			<generator class="increment" />
+		</id>
+		
+		<property name="firstName" column="FIRST_NAME" />
+		<property name="middleName" column="MIDDLE_NAME" />
+		<property name="lastName" column="LAST_NAME" />
+		<property name="gender" column="GENDER" />
+		<property name="dateOfBirth" column="DATE_OF_BIRTH" />
+		
+		<many-to-one name="course" column="COURSE_ID" unique="true"
+			class="CourseVO" not-null="true" />
+		
+		<property name="addmissionYear" column="ADDMISSION_YEAR"/>
+		<property name="challanNo" column="CHALLAN_NO" />
+		<property name="emailId" column="EMAIL_ID" />
+		<property name="mobileNo" column="MOBILE_NO" />
+		<property name="uniqueId" column="UNIQUE_ID" />
+		<property name="status" column="STATUS" />
+		<property name="password" column="PASSWORD" />
+	</class>
+</hibernate-mapping>

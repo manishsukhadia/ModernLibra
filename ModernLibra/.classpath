@@ -12,5 +12,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernate"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/mysqlconnector"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/struts"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/captcha"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

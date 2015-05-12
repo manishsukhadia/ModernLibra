@@ -27,7 +27,8 @@ public class AddCourseAction extends BaseActionSupport {
 			ConfigurationService configurationService = new ConfigurationService();
 			try {
 				configurationService.addCourse(courseTO);
-				addActionMessage("Successfully Course ''"+courseTO.getCourseName()+"'' Added.");
+				addActionMessage("Successfully Course ''"
+						+ courseTO.getCourseName() + "'' Added.");
 				courseTO = null;
 				retVal = SUCCESS;
 			} catch (BizException be) {
@@ -49,31 +50,24 @@ public class AddCourseAction extends BaseActionSupport {
 			if (StringUtils.isEmpty(courseTO.getCourseName())) {
 				addFieldError("courseTO.courseName",
 						"Course name cannot be blank.");
-			} else {
-				if (!StringUtils.isAlphaSpace(courseTO.getCourseName())) {
-					addFieldError("courseTO.courseName",
-							"Course name cannot contain numeric and special characters");
-				}
+			} else if (!StringUtils.isAlphaSpace(courseTO.getCourseName())) {
+				addFieldError("courseTO.courseName",
+						"Course name cannot contain numeric and special characters");
 			}
 
 			if (StringUtils.isEmpty(courseTO.getDuration())) {
 				addFieldError("courseTO.duration",
 						"Duration of Course cannot be blank.");
-			} else {
-				if (!StringUtils.isNumeric(courseTO.getDuration())) {
-					addFieldError("courseTO.duration",
-							"Duration must be numeric");
-				}
+			} else if (!StringUtils.isNumeric(courseTO.getDuration())) {
+				addFieldError("courseTO.duration", "Duration must be numeric");
 			}
 
 			if (StringUtils.isEmpty(courseTO.getNumberOfSemester())) {
 				addFieldError("courseTO.numberOfSemester",
 						"Number of Semester cannot be blank.");
-			} else {
-				if (!StringUtils.isNumeric(courseTO.getNumberOfSemester())) {
-					addFieldError("courseTO.numberOfSemester",
-							"Number of Semester must be numeric");
-				}
+			} else if (!StringUtils.isNumeric(courseTO.getNumberOfSemester())) {
+				addFieldError("courseTO.numberOfSemester",
+						"Number of Semester must be numeric");
 			}
 
 		}

@@ -21,7 +21,7 @@
 		<center>
 			<div id="addBox">
 				<div class="heading">
-					<b><div Style="padding: 9px;" >Update Course</div></b>
+					<b><div Style="padding: 9px;">Update Course</div></b>
 				</div>
 				<br>
 		<b>		<s:actionmessage /> </b>

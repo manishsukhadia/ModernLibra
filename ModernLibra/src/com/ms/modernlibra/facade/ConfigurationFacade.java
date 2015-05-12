@@ -7,12 +7,16 @@ import com.ms.modernlibra.BizException;
 import com.ms.modernlibra.ExceptionCategory;
 import com.ms.modernlibra.SystemException;
 import com.ms.modernlibra.dao.CourseDAO;
+import com.ms.modernlibra.dao.StudentDAO;
 import com.ms.modernlibra.model.CourseVO;
+import com.ms.modernlibra.model.StudentVO;
 import com.ms.modernlibra.transferobject.CourseTO;
+import com.ms.modernlibra.transferobject.StudentTO;
 
 //this class is used to manage the business rules.
 public class ConfigurationFacade {
 
+	// Course Module.
 	public void addCourse(CourseTO courseTO) throws BizException,
 			SystemException {
 		CourseDAO courseDAO = new CourseDAO();
@@ -69,5 +73,23 @@ public class ConfigurationFacade {
 			throw new BizException(ExceptionCategory.COURSE_NAME_ALREADY_EXISTS);
 		}
 
+	}
+
+	// End of Course Module ////////////////////////////////////////////////////////////
+	
+	//Student Module
+	public void addStudent(StudentTO studentTO) throws BizException,
+			SystemException {
+		StudentDAO studentDAO = new StudentDAO();
+		StudentVO studentVO = StudentVO.adapt(studentTO);
+		
+		if (studentDAO.searchByEmailId(studentVO) == null) {
+			studentVO.setStatus("inactive");
+			studentVO.setUniqueId("1234567890");
+			studentDAO.save(studentVO);
+			studentTO = StudentTO.adapt(studentVO);
+		} else {
+			throw new BizException(ExceptionCategory.STUDENT_ALREADY_REGISTERED);
+		}
 	}
 }

@@ -34,10 +34,11 @@ public class CourseVO extends ValueObject {
 	public static CourseVO adapt(CourseTO courseTO) {
 		CourseVO courseVO = new CourseVO();
 
+		courseVO.setId(courseTO.getId());
 		courseVO.setCourseName(courseTO.getCourseName());
 		courseVO.setDuration(courseTO.getDuration());
 		courseVO.setNumberOfSemester(courseTO.getNumberOfSemester());
-		courseVO.setId(courseTO.getId());
+		
 
 		return courseVO;
 	}

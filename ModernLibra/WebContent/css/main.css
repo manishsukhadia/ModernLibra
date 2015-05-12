@@ -60,7 +60,7 @@
 	font: Arial, Helvetica, sans-serif;
 }
 
-input[type='text'],textarea,select {
+input[type='text'],  input[type='password'], textarea, select {
 	border: 1px solid #CCCCCC;
 	border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -69,6 +69,10 @@ input[type='text'],textarea,select {
 	padding: 3px 6px;
 	width: 80%;
 	font: Arial, Helvetica, sans-serif;
+}
+
+.errorMessage {
+color:red;
 }
 
 #searchBox {
@@ -105,4 +109,12 @@ input[type='text'],textarea,select {
 	font-size: 13px;
 	border-radius: 0 0 0 25px;
 	border-radius: 0 0 27px;
+}
+
+#captcha {
+	width: 80%;
+}
+
+#refersh {
+	width: 20%;
 }
