@@ -23,3 +23,6 @@
 /servlet-api.jar
 /struts2-core-2.3.16.3.jar
 /xwork-core-2.3.16.3.jar
+/jstl-1.2.jar
+/simplecaptcha-latest.jar
+/standard.jar
