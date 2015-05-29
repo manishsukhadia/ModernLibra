@@ -16,6 +16,13 @@
 			<result name="addStudent">/add_student.jsp</result>
 
 		</action>
+		
+		<action name="searchStudent" class="com.ms.modernlibra.web.action.SearchStudentAction"
+			method="execute">
+			<result name="success">/search_student.jsp</result>
+			<result name="error">/search_student.jsp</result>
+			<result name="input">/search_student.jsp</result>
+		</action>
 
 		<action name="addCourse" class="com.ms.modernlibra.web.action.AddCourseAction"
 			method="execute">

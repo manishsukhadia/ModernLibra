@@ -80,7 +80,7 @@ $(function() {
 
 						<tr>
 							<td><s:textfield name="studentTO.addmissionYear"
-									label="Addmission Year" maxlength="4" /></td>
+									label="Admission Year" maxlength="4" /></td>
 						</tr>
 
 						<tr>

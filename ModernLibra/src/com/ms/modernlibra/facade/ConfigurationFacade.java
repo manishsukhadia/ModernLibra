@@ -1,6 +1,7 @@
 package com.ms.modernlibra.facade;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.ms.modernlibra.BizException;
@@ -75,21 +76,55 @@ public class ConfigurationFacade {
 
 	}
 
-	// End of Course Module ////////////////////////////////////////////////////////////
-	
-	//Student Module
+	// End of Course Module
+	// ////////////////////////////////////////////////////////////
+
+	// Student Module
 	public void addStudent(StudentTO studentTO) throws BizException,
 			SystemException {
 		StudentDAO studentDAO = new StudentDAO();
 		StudentVO studentVO = StudentVO.adapt(studentTO);
-		
+
 		if (studentDAO.searchByEmailId(studentVO) == null) {
-			studentVO.setStatus("inactive");
-			studentVO.setUniqueId("1234567890");
+			studentVO.setStatus("inactive"); // setting status as inactive. 
+			studentVO.setUniqueId(ConfigurationFacade
+					.uniqueIdGenerator(studentVO));
 			studentDAO.save(studentVO);
 			studentTO = StudentTO.adapt(studentVO);
 		} else {
 			throw new BizException(ExceptionCategory.STUDENT_ALREADY_REGISTERED);
 		}
 	}
+
+	// uniqueId Generator
+	private static String uniqueIdGenerator(StudentVO studentVO) {
+		// unique id = college prefix + separator + admission year + separator + course id +
+		// separator + mills;
+
+		String collegePrefix = "MBM";
+		String admissionYear = studentVO.getAddmissionYear();
+		int courseId = studentVO.getCourse().getId();
+		String separator = "/";
+		long milliSec = Calendar.getInstance().getTimeInMillis();
+
+		String uniqueId = collegePrefix + separator + admissionYear + separator
+				+ courseId + separator + milliSec;
+
+		return uniqueId;
+	}
+	
+	public List<StudentTO> searchStudent(StudentTO studentTO) throws SystemException {
+		StudentDAO studentDAO = new StudentDAO();
+		StudentVO studentVO = StudentVO.adapt(studentTO);
+		
+		List<StudentVO> studentVOList = studentDAO.searchStudent(studentVO);
+		
+		List<StudentTO> studentTOList = new ArrayList<StudentTO>();
+		for (StudentVO stuVO : studentVOList) {
+			StudentTO stuTO= StudentTO.adapt(stuVO);
+			studentTOList.add(stuTO);
+		}
+		return studentTOList;
+	}
+
 }

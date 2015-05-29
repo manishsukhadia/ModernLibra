@@ -39,7 +39,6 @@ public class CourseVO extends ValueObject {
 		courseVO.setDuration(courseTO.getDuration());
 		courseVO.setNumberOfSemester(courseTO.getNumberOfSemester());
 		
-
 		return courseVO;
 	}
 }

@@ -99,7 +99,25 @@ public class ConfigurationService {
 			throw new SystemException(ExceptionCategory.SYSTEM);
 		}
 	}
-	/////////////////////////////////////////////////////////////////////////////////////
+	
+	public List<StudentTO> searchStudent(StudentTO studentTO) throws SystemException {
+		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		
+		ConfigurationFacade configurationFacade = new ConfigurationFacade();
+		List<StudentTO> studentList = new ArrayList<StudentTO>();
+		try {
+			studentList = configurationFacade.searchStudent(studentTO);
+			transaction.commit();
+		} catch (HibernateException he) {
+			transaction.rollback();
+			throw new SystemException(ExceptionCategory.SYSTEM);
+		}
+		return studentList;
+	}
+	//End///////////////////////////////////////////////////////////////////////////////////
+
+	
 	
 	
 }

@@ -67,6 +67,7 @@ public class AddStudentAction extends BaseActionSupport {
 				configurationService.addStudent(studentTO);
 				addActionMessage("Successfully Registered.");
 				studentTO = null;
+				setCaptchaCode(null);
 				retVal = SUCCESS;
 			} catch (BizException be) {
 				addActionError(be.getExceptionCategory().getMessage());
@@ -178,6 +179,8 @@ public class AddStudentAction extends BaseActionSupport {
 
 			if (StringUtils.isEmpty(studentTO.getPassword())) {
 				addFieldError("studentTO.password", "Password cannot be blank.");
+			} else if (studentTO.getPassword().length() < 8) {
+				addFieldError("studentTO.password", "Password Length must be greater than 7 char.");
 			}
 
 			if (StringUtils.isEmpty(getConfirmPassword())) {
@@ -191,7 +194,9 @@ public class AddStudentAction extends BaseActionSupport {
 			// Captcha code validation
 			Map<String, Object> attibutes = ActionContext.getContext().getSession();
 			Captcha captcha = (Captcha) attibutes.get(Captcha.NAME);
-			if (!captcha.isCorrect(getCaptchaCode())) {
+			if(StringUtils.isEmpty(getCaptchaCode())) {
+				addFieldError("captchaCode", "Security Code cannot be blank.");
+			} else if (!captcha.isCorrect(getCaptchaCode())) {
 				addFieldError("captchaCode", "Not matched with Security Code.");
 			}
 			
