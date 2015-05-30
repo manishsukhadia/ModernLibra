@@ -55,7 +55,7 @@ public class ConfigurationService {
 		ConfigurationFacade configurationFacade = new ConfigurationFacade();
 		CourseTO courseTO = new CourseTO();
 		try {
-			courseTO = configurationFacade.findDepartmentById(requestTO);
+			courseTO = configurationFacade.findCourseById(requestTO);
 			transaction.commit();
 		} catch (HibernateException he) {
 			transaction.rollback();
@@ -69,7 +69,7 @@ public class ConfigurationService {
 		Transaction transaction = session.beginTransaction();
 		ConfigurationFacade configurationFacade = new ConfigurationFacade();
 		try {
-			configurationFacade.updatecourse(courseTO);
+			configurationFacade.updateCourse(courseTO);
 			transaction.commit();
 		} catch (SystemException se) {
 			transaction.rollback();
@@ -115,7 +115,43 @@ public class ConfigurationService {
 		}
 		return studentList;
 	}
+	
+	public StudentTO findStudentById(StudentTO requestTO) throws SystemException {
+		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		ConfigurationFacade configurationFacade = new ConfigurationFacade();
+		StudentTO studentTO = new StudentTO();
+		try {
+			studentTO = configurationFacade.findStudentById(requestTO);
+			transaction.commit();
+		} catch (HibernateException he) {
+			transaction.rollback();
+			throw new SystemException(ExceptionCategory.SYSTEM);
+		}
+		return studentTO;
+	}
+	
+	public void updateStudent(StudentTO studentTO) throws SystemException, BizException {
+		Session session = HibernateUtils.getFactoryObject().getCurrentSession();
+		Transaction transaction = session.beginTransaction();
+		ConfigurationFacade configurationFacade = new ConfigurationFacade();
+		try {
+			configurationFacade.updateStudent(studentTO);
+			transaction.commit();
+		} catch (SystemException se) {
+			transaction.rollback();
+			throw se;
+		} catch (BizException be) {
+			transaction.rollback();
+			throw be;
+		} catch (HibernateException he) {
+			transaction.rollback();
+			throw new SystemException(ExceptionCategory.SYSTEM);
+		}
+	}
 	//End///////////////////////////////////////////////////////////////////////////////////
+
+	
 
 	
 	

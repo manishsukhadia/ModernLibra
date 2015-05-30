@@ -23,7 +23,7 @@ public class SearchStudentAction extends BaseActionSupport {
 	private StudentTO studentTO;
 	private List<StudentTO> studentList;
 	private List<Option> courseOptionList = new ArrayList<Option>();
-	private int id;
+	private int recordId;
 
 	public StudentTO getStudentTO() {
 		return studentTO;
@@ -41,14 +41,6 @@ public class SearchStudentAction extends BaseActionSupport {
 		this.studentList = studentList;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public List<Option> getCourseOptionList() {
 		return courseOptionList;
 	}
@@ -57,10 +49,18 @@ public class SearchStudentAction extends BaseActionSupport {
 		this.courseOptionList = courseOptionList;
 	}
 
+	public int getRecordId() {
+		return recordId;
+	}
+
+	public void setRecordId(int recordId) {
+		this.recordId = recordId;
+	}
+
 	public String execute() throws SystemException, BizException {
 		String retVal = SUCCESS;
 		setView();
-
+		
 		try {
 			if (SUBMIT.equals(getSubmit())) {
 				ConfigurationService configurationService = new ConfigurationService();
@@ -69,8 +69,8 @@ public class SearchStudentAction extends BaseActionSupport {
 
 			} else {
 				StudentTO studentTO = new StudentTO();
-				studentTO.setId(getId());
-				if (getId() != 0) {
+				studentTO.setId(getRecordId());
+				if (getRecordId() != 0) {
 					addActionMessage("Successfully updated.");
 				}
 			}

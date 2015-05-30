@@ -133,7 +133,9 @@ public class StudentVO extends ValueObject {
 		studentVO.setGender(studentTO.getGender());
 		studentVO.setDateOfBirth(studentTO.getDateOfBirth());
 		
+		if(studentTO.getCourse() != null) {
 		studentVO.setCourse(CourseVO.adapt(studentTO.getCourse()));
+		}
 		
 		studentVO.setAddmissionYear(studentTO.getAddmissionYear());
 		studentVO.setChallanNo(studentTO.getChallanNo());
@@ -144,7 +146,6 @@ public class StudentVO extends ValueObject {
 		studentVO.setPassword(studentTO.getPassword());
 
 		return studentVO;
-		
 	}
 	
 }

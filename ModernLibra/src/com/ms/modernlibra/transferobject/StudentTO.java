@@ -107,8 +107,10 @@ public class StudentTO extends TransferObject {
 		studentTO.setLastName(studentVO.getLastName());
 		studentTO.setGender(studentVO.getGender());
 		studentTO.setDateOfBirth(studentVO.getDateOfBirth());
-		
+	
+		if(studentVO.getCourse() != null) {
 		studentTO.setCourse(CourseTO.adapt(studentVO.getCourse()));
+		}
 		
 		studentTO.setAddmissionYear(studentVO.getAddmissionYear());
 		studentTO.setChallanNo(studentVO.getChallanNo());

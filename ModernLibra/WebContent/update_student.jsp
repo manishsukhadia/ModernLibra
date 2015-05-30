@@ -23,11 +23,14 @@
 
 <!-- script for date picker. -->
 <script>
-$(function() {
-	$('#yearsAbsPicker').datepick({ 
-	    minDate: new Date(1975, 1-1, 1), maxDate: new Date(2005, 12-1, 31), 
-	    yearRange: '1975:2005', showTrigger: '#calImg'});
-});
+	$(function() {
+		$('#yearsAbsPicker').datepick({
+			minDate : new Date(1975, 1 - 1, 1),
+			maxDate : new Date(2005, 12 - 1, 31),
+			yearRange : '1975:2005',
+			showTrigger : '#calImg'
+		});
+	});
 </script>
 <title>Modern Libra</title>
 </head>
@@ -39,13 +42,14 @@ $(function() {
 		<center>
 			<div id="addBox">
 				<div class="heading">
-					<b><div Style="padding: 9px;">Student Registration</div></b>
+					<b><div Style="padding: 9px;">Student Update</div></b>
 				</div>
-				<br> 
-				<b> <s:actionmessage />	</b>
+				<br> <b> <s:actionmessage />
+				</b>
 				<s:actionerror />
-				<!--  Add Student form -->
-				<s:form action="addStudent">
+				<!--  Update Student form -->
+				<s:form action="updateStudent">
+					<s:hidden name="studentTO.id" />
 					<table>
 						<tr>
 							<td><s:textfield name="studentTO.firstName"
@@ -66,11 +70,11 @@ $(function() {
 							<td><s:radio label="Gender" name="studentTO.gender"
 									list="{'Male','Female'}" /></td>
 						</tr>
-						
+
 						<tr>
 							<td><s:textfield name="studentTO.dateOfBirth"
-									label="Date Of Birth (mm/dd/yyyy)" maxlength="10" id="yearsAbsPicker" />
-							</td>
+									label="Date Of Birth (mm/dd/yyyy)" maxlength="10"
+									id="yearsAbsPicker" /></td>
 						</tr>
 
 						<tr>
@@ -89,46 +93,27 @@ $(function() {
 						</tr>
 
 						<tr>
-							<td><s:textfield name="studentTO.emailId" label="Email Id"
-									maxlength="45" /></td>
-						</tr>
-
-						<tr>
 							<td><s:textfield name="studentTO.mobileNo"
 									label="Mobile Number" maxlength="10" /></td>
 						</tr>
-
 						<tr>
-							<td><s:password name="studentTO.password" label="Password"
+							<td><s:radio label="Status" name="studentTO.status"
+									list="{'active','inactive'}" /></td>
+						</tr>
+						<tr>
+							<td><s:textfield name="studentTO.password" label="Password"
 									maxlength="45" /></td>
 						</tr>
 
 						<tr>
-							<td><s:password name="confirmPassword"
-									label="Confirm Password" maxlength="45" /></td>
-						</tr>
-						
-						<tr>
-							<td> <br> </td>
-						</tr>
-						
-						<tr>
-							<td align="right"><img id="capimg" border="1" 
-								src="<c:url value="simpleCaptcha.png" />" width="200" height="45" />
-							</td>
-							
-							<td align="left">
-							<img src="./images/refersh.jpg" onclick="document.getElementById('capimg').setAttribute('src', '<c:url value="simpleCaptcha.png?id=1"/>')"
-								width="35" height="35">
-							</td>
+							<td><s:textfield name="studentTO.emailId" label="Email Id"
+									maxlength="45" readonly="true" /></td>
 						</tr>
 
-
 						<tr>
-							<td><s:textfield name="captchaCode" label="Security Code"
-									maxlength="10" /></td>
+							<td><s:textfield name="studentTO.uniqueId" label="Unique Id"
+									maxlength="45" readonly="true" /></td>
 						</tr>
-
 					</table>
 					<s:submit name="submit" value="submit" />
 				</s:form>

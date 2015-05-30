@@ -28,7 +28,7 @@
 				<s:actionerror /> 
 				<!--  update Course form -->
 				<s:form action="updateCourse">
-					<s:hidden name = "courseTO.id"/>
+				 <s:hidden name = "courseTO.id"/>  	<!--  storing id b/w submit update and non submit update -->
 					<s:textfield name="courseTO.courseName"
 						label="Course Name" maxlength="45" />
 					<s:textfield name="courseTO.duration"

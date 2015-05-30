@@ -102,7 +102,7 @@
 							class="<s:if test="#rowstatus.odd == true ">odd</s:if>
 						<s:else>even</s:else>">
 							<td width="15%"><a
-								href="updateStudent?id=<s:property value="id"/>"> <s:property
+								href="updateStudent?recordId=<s:property value="id"/>"> <s:property
 										value='uniqueId' /></a></td>
 							<td width="15%"><s:property value='firstName' /></td>
 							<td width="15%"><s:property value='lastName' /></td>
@@ -110,7 +110,6 @@
 							<td width="5%"><s:property value='addmissionYear' /></td>
 							<td width="10%"><s:property value='mobileNo' /></td>
 							<td width="10%"><s:property value='status' /></td>
-
 						</tr>
 					</s:iterator>
 

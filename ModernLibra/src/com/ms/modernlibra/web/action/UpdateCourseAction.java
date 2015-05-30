@@ -10,7 +10,7 @@ import com.ms.modernlibra.transferobject.CourseTO;
 public class UpdateCourseAction extends BaseActionSupport {
 
 	private CourseTO courseTO;
-	private int id;
+	private int recordId;
 
 	public CourseTO getCourseTO() {
 		return courseTO;
@@ -20,12 +20,12 @@ public class UpdateCourseAction extends BaseActionSupport {
 		this.courseTO = courseTO;
 	}
 
-	public int getId() {
-		return id;
+	public int getRecordId() {
+		return recordId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setRecordId(int recordId) {
+		this.recordId = recordId;
 	}
 
 	public String execute() {
@@ -35,7 +35,7 @@ public class UpdateCourseAction extends BaseActionSupport {
 		if (SUBMIT.equals(getSubmit())) {
 			try {
 				configurationService.updateCourse(courseTO);
-				setId(courseTO.getId());
+				setRecordId(courseTO.getId());
 				retVal = SUCCESS;
 			} catch (SystemException se) {
 				addActionError(se.getExceptionCategory().getMessage());
@@ -46,7 +46,7 @@ public class UpdateCourseAction extends BaseActionSupport {
 			}
 		} else {
 			CourseTO courseTO = new CourseTO();
-			courseTO.setId(getId());
+			courseTO.setId(getRecordId());
 			try {
 				courseTO = configurationService.findDepartmentById(courseTO);
 			} catch (SystemException se) {

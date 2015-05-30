@@ -17,7 +17,7 @@
 		<property name="gender" column="GENDER" />
 		<property name="dateOfBirth" column="DATE_OF_BIRTH" />
 		
-		<many-to-one name="course" column="COURSE_ID" unique="true"
+		<many-to-one name="course" column="COURSE_ID" unique="true"  lazy="false"
 			class="CourseVO" not-null="true" />
 		
 		<property name="addmissionYear" column="ADDMISSION_YEAR"/>

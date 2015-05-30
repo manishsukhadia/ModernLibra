@@ -16,7 +16,6 @@
 	</div>
 	<div id="container">
 		<center>
-			<s:hidden name = "courseTO.id"></s:hidden>
 		<b>	<s:actionmessage /> </b>
 			<s:actionerror />
 			<div id="searchBox">
@@ -27,6 +26,7 @@
 						<span style="margin: 317px;"></span>
 						 <a href="addCourse">Add Course</a>
 					 </div>
+					 </b>
 					</div>
 				</div>
 			<span style="padding: 1px;"></span>
@@ -42,7 +42,7 @@
 						class="<s:if test="#rowstatus.odd == true ">odd</s:if>
 						<s:else>even</s:else>">
 						<td width="40%">
-							<a href="updateCourse?id=<s:property value="id"/>">
+							<a href="updateCourse?recordId=<s:property value="id"/>">
 							<s:property	value='courseName' /></a>
 						</td>
 						<td width="15%">

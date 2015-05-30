@@ -23,6 +23,17 @@
 			<result name="error">/search_student.jsp</result>
 			<result name="input">/search_student.jsp</result>
 		</action>
+		
+		<action name="updateStudent" class="com.ms.modernlibra.web.action.UpdateStudentAction"
+			method="execute">
+			<result name="success" type="redirectAction">
+				<param name="recordId">${recordId}</param>
+				<param name="actionName">searchStudent</param>
+			</result>
+			<result name="input">/update_student.jsp</result>
+			<result name="updateStudent">/update_student.jsp</result>
+			<result name="error">/update_student.jsp</result>
+		</action>
 
 		<action name="addCourse" class="com.ms.modernlibra.web.action.AddCourseAction"
 			method="execute">
@@ -41,7 +52,7 @@
 		<action name="updateCourse" class="com.ms.modernlibra.web.action.UpdateCourseAction"
 			method="execute">
 			<result name="success" type="redirectAction">
-				<param name="id">${id}</param>
+				<param name="recordId">${recordId}</param>
 				<param name="actionName">searchCourse</param>
 			</result>
 			<result name="input">/update_course.jsp</result>

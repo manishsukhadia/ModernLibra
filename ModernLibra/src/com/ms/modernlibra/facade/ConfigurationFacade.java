@@ -42,7 +42,7 @@ public class ConfigurationFacade {
 		return courseTOList;
 	}
 
-	public CourseTO findDepartmentById(CourseTO requestTO) {
+	public CourseTO findCourseById(CourseTO requestTO) {
 		CourseTO returnVal = null;
 		CourseDAO courseDAO = new CourseDAO();
 
@@ -55,7 +55,7 @@ public class ConfigurationFacade {
 		return returnVal;
 	}
 
-	public void updatecourse(CourseTO courseTO) throws SystemException,
+	public void updateCourse(CourseTO courseTO) throws SystemException,
 			BizException {
 		CourseDAO courseDAO = new CourseDAO();
 
@@ -86,7 +86,7 @@ public class ConfigurationFacade {
 		StudentVO studentVO = StudentVO.adapt(studentTO);
 
 		if (studentDAO.searchByEmailId(studentVO) == null) {
-			studentVO.setStatus("inactive"); // setting status as inactive. 
+			studentVO.setStatus("inactive"); // setting status as inactive.
 			studentVO.setUniqueId(ConfigurationFacade
 					.uniqueIdGenerator(studentVO));
 			studentDAO.save(studentVO);
@@ -98,7 +98,8 @@ public class ConfigurationFacade {
 
 	// uniqueId Generator
 	private static String uniqueIdGenerator(StudentVO studentVO) {
-		// unique id = college prefix + separator + admission year + separator + course id +
+		// unique id = college prefix + separator + admission year + separator +
+		// course id +
 		// separator + mills;
 
 		String collegePrefix = "MBM";
@@ -112,19 +113,64 @@ public class ConfigurationFacade {
 
 		return uniqueId;
 	}
-	
-	public List<StudentTO> searchStudent(StudentTO studentTO) throws SystemException {
+
+	public List<StudentTO> searchStudent(StudentTO studentTO)
+			throws SystemException {
 		StudentDAO studentDAO = new StudentDAO();
 		StudentVO studentVO = StudentVO.adapt(studentTO);
-		
+
 		List<StudentVO> studentVOList = studentDAO.searchStudent(studentVO);
-		
+
 		List<StudentTO> studentTOList = new ArrayList<StudentTO>();
 		for (StudentVO stuVO : studentVOList) {
-			StudentTO stuTO= StudentTO.adapt(stuVO);
+			StudentTO stuTO = StudentTO.adapt(stuVO);
 			studentTOList.add(stuTO);
 		}
 		return studentTOList;
 	}
 
+	public StudentTO findStudentById(StudentTO requestTO) {
+		StudentTO returnVal = null;
+		StudentDAO studentDAO = new StudentDAO();
+
+		StudentVO studentVO = StudentVO.adapt(requestTO);
+		studentVO = (StudentVO) studentDAO.findById(studentVO);
+
+		if (studentVO != null) {
+			returnVal = StudentTO.adapt(studentVO);
+		}
+		return returnVal;
+	}
+
+	public void updateStudent(StudentTO studentTO) throws SystemException,
+			BizException {
+		StudentDAO studentDAO = new StudentDAO();
+
+		StudentVO studentVO = StudentVO.adapt(studentTO);
+
+		StudentVO savedVO = studentDAO.searchByEmailId(studentVO);
+
+		if (savedVO == null) {
+			studentDAO.update(studentVO);
+		} else if (savedVO.getId() == studentVO.getId()) {
+			savedVO.setFirstName(studentVO.getFirstName());
+			savedVO.setMiddleName(studentVO.getMiddleName());
+			savedVO.setLastName(studentVO.getLastName());
+			savedVO.setGender(studentVO.getGender());
+			savedVO.setDateOfBirth(studentVO.getDateOfBirth());
+			savedVO.setCourse(studentVO.getCourse());
+			savedVO.setAddmissionYear(studentVO.getAddmissionYear());
+			savedVO.setChallanNo(studentVO.getChallanNo());
+			savedVO.setEmailId(studentVO.getEmailId());
+			savedVO.setMobileNo(studentVO.getMobileNo());
+			savedVO.setUniqueId(studentVO.getUniqueId());
+			savedVO.setStatus(studentVO.getStatus());
+			savedVO.setPassword(studentVO.getPassword());
+			studentDAO.update(savedVO);
+			} else {
+			throw new BizException(ExceptionCategory.STUDENT_ALREADY_REGISTERED);
+			}
+	}
+
+	// End//////////////////////////////////////////////////////////////////////////
 }
